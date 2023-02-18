@@ -2,18 +2,29 @@ const mongoose = require('mongoose');
 
 const teacherSchema = mongoose.Schema(
     {
-        name: {type:'String',required:true},
+        name: { type: 'String' },
         email: { type: 'String', required: true },
-        password: { type: 'String', required: true }, 
-        leavesTaken: [{
-            month: Number,
-            year: Number,
-            taken: Number, 
-        }],
+        password: { type: 'String',required: true },
+        salary: {
+            type: Number,
+            required: true
+        },
+        leavesTaken: {
+            type: Number,
+            default: 0
+        },
         attendance: [{
-            date: Date,
-            status: String, 
-        }],
+            date: {
+                type: String,
+                default: Date.now
+            },
+            status: {
+                type: String,
+                enum: ['present', 'half day', 'absent'],
+                default: 'absent'
+            }
+        }]
     }
+
 )
-module.exports = mongoose.model('teacher',teacherSchema);
+module.exports = mongoose.model('teacher', teacherSchema);
