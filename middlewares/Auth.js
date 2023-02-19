@@ -3,12 +3,13 @@ require('dotenv').config();
 
 const auth = (req,res,next)=>{
     try {
-        let token = res.headers.authorization
+        let token = req.headers.authorization
         if(token)
         {
+            console.log(token)
             token = token.split(" ")[1];
             let user = jwt.verify(token, process.env.SECRET_KEY);
-            req.userid = user._id;
+            req.userid = user.id;
         }
         else {
             console.log("Unauthorized user");
