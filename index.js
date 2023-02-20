@@ -6,7 +6,7 @@ const app = express();
 const cors = require("cors");
 app.use(express.json());
 app.use(cors());
-app.use('/', routers),
+app.use('/', adminRouter),
     app.get('/', (req, res) => {
         res.send("Server is Live")
     })
